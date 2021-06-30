@@ -2,6 +2,8 @@ import { FC, useState } from 'react';
 
 import Editor from 'components/Editor';
 
+import 'App.css';
+
 const App: FC = () => {
   const [html, setHtml] = useState('');
   const [css, setCss] = useState('');
