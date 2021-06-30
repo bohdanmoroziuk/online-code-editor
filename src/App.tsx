@@ -2,12 +2,14 @@ import { FC, useState, useEffect } from 'react';
 
 import Editor from 'components/Editor';
 
+import useLocaleStorage from 'hooks/useLocaleStorage';
+
 import 'App.css';
 
 const App: FC = () => {
-  const [html, setHtml] = useState('');
-  const [css, setCss] = useState('');
-  const [js, setJs] = useState('');
+  const [html, setHtml] = useLocaleStorage('html', '');
+  const [css, setCss] = useLocaleStorage('css', '');
+  const [js, setJs] = useLocaleStorage('js', '');
 
   const [srcDoc, setSrcDoc] = useState('');
 
