@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import { Controlled as ControlledEditor } from 'react-codemirror2';
 
@@ -23,11 +23,17 @@ const Editor: FC<Props> = ({ displayName, language, value, onChange }) => {
     onChange(value);
   };
 
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => {
+    setIsOpen(isOpen => !isOpen);
+  };
+
   return (
-    <div className="editor-container">
+    <div className={`editor-container ${isOpen ? '' : 'collapsed'}`.trim()}>
       <div className="editor-title">
         {displayName}
-        <button>O\C</button>
+        <button onClick={toggle}>O\C</button>
       </div>
       <ControlledEditor 
         onBeforeChange={handleChange}
