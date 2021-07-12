@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { Controlled as ControlledEditor } from 'react-codemirror2';
 
@@ -11,6 +11,8 @@ import 'codemirror/mode/javascript/javascript';
 
 import 'components/Editor/index.css';
 
+import useToggle from 'hooks/useToggle';
+
 interface Props {
   displayName: 'HTML' | 'CSS' | 'JS';
   language: 'xml' | 'css' | 'javascript';
@@ -19,14 +21,10 @@ interface Props {
 }
 
 const Editor: FC<Props> = ({ displayName, language, value, onChange }) => {
+  const { isOpen, toggle } = useToggle(true);
+
   const handleChange = (_editor: any, _data: any, value: string) => {
     onChange(value);
-  };
-
-  const [isOpen, setIsOpen] = useState(true);
-
-  const toggle = () => {
-    setIsOpen(isOpen => !isOpen);
   };
 
   const editorOptions = {
