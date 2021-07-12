@@ -29,23 +29,27 @@ const Editor: FC<Props> = ({ displayName, language, value, onChange }) => {
     setIsOpen(isOpen => !isOpen);
   };
 
+  const editorOptions = {
+    lineWrapping: true,
+    lint: true,
+    mode: language,
+    theme: 'material',
+    lineNumbers: true,
+  };
+
+  const rootClassName = ['editor-container', ...(isOpen ? [] : ['collapsed'])].join(' ')
+
   return (
-    <div className={`editor-container ${isOpen ? '' : 'collapsed'}`.trim()}>
+    <div className={rootClassName}>
       <div className="editor-title">
         {displayName}
         <button onClick={toggle}>O\C</button>
       </div>
       <ControlledEditor 
+        className="code-mirror-wrapper"
         onBeforeChange={handleChange}
         value={value}
-        className="code-mirror-wrapper"
-        options={{
-          lineWrapping: true,
-          lint: true,
-          mode: language,
-          theme: 'material',
-          lineNumbers: true,
-        }}
+        options={editorOptions}
       />
     </div>
   );
